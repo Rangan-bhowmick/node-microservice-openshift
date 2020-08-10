@@ -11,7 +11,7 @@ node() {
    docker.withRegistry("https:registry.hub.docker.com", "docker-hub"){
       
             stage('Build Docker Images'){
-               sh "docker-compose build -t ${props.image_name} ."
+               sh "docker-compose.yml build -t ${props.image_name} ."
                sh "docker tag ${props.image_name} ${props.registry}/node-microservice-openshift:$tag_name"
             } 
             stage('Push Docker Images'){
