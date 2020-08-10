@@ -1,0 +1,5 @@
+return [
+    version:'',
+    image_name:'sample-node',
+    registry:'rangandocker',
+ ]
