@@ -8,10 +8,10 @@ node() {
    def tag_name = "$cur_date-${props.image_name}".toString()
    
    
-   docker.withRegistry("https:registry.hub.docker.com", "docker-hub"){
+   docker.withRegistry("https://registry.hub.docker.com", "docker-hub"){
       
             stage('Build Docker Images'){
-               sh "docker-compose.yml build -t ${props.image_name} ."
+               sh "docker-compose build -t ${props.image_name} ."
                sh "docker tag ${props.image_name} ${props.registry}/node-microservice-openshift:$tag_name"
             } 
             stage('Push Docker Images'){
