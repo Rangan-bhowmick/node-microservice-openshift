@@ -3,9 +3,9 @@ node() {
    def props = load 'properties'
    //def VERSION = {props.version}
    def cur_date = new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("UTC"))
-   sh "git rev-parse --short HEAD > commit-id"
-   def commit_id = readFile('commit-id').trim()
-   def tag_name = "$cur_date-$commit_id-${props.image_name}".toString()
+   //sh "git rev-parse --short HEAD > commit-id"
+   //def commit_id = readFile('commit-id').trim()
+   def tag_name = "$cur_date-${props.image_name}".toString()
    
    
    docker.withRegistry("https:registry.hub.docker.com", "docker-hub"){
