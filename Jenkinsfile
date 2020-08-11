@@ -16,7 +16,7 @@ node() {
    
    
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
-      //echo node-microservice-openshift/books
+      
             stage('Build Docker Images'){
                 books = docker.build("${props.registry}/node-microservice:$tag_book","-f ${env.WORKSPACE}/books/Dockerfile .")
                 search = docker.build("${props.registry}/node-microservice:$tag_search","-f ${env.WORKSPACE}/search/Dockerfile .") 
@@ -25,22 +25,12 @@ node() {
               
             } 
             stage('Push Docker Images'){
-                    //sh "docker push ${props.registry}/node-microservice:$tag_name1"
-                     //sh "docker push ${props.registry}/node-microservice:$tag_name2"
-                    // sh "docker logout ${props.registry}"
-               //books.push("${env.BUILD_NUMBER}")
                books.push()
-               
-               //search.push("${env.BUILD_NUMBER}")
                search.push()
-               
-               //videos.push("${env.BUILD_NUMBER}")
                videos.push()
-               
-               //web.push("${env.BUILD_NUMBER}")
                web.push()
                
-               echo "trying to push to docker hub"
+               echo "Successfully pushed to Docker-hub !!!"
             }   		    
    }
 }
