@@ -27,16 +27,16 @@ node() {
                     //sh "docker push ${props.registry}/node-microservice:$tag_name1"
                      //sh "docker push ${props.registry}/node-microservice:$tag_name2"
                     // sh "docker logout ${props.registry}"
-               books.push(${env.BUILD_ID})
+               books.push("${env.BUILD_NUMBER}")
                books.push("latest")
                
-               search.push(${env.BUILD_ID})
+               search.push("${env.BUILD_NUMBER}")
                search.push("latest")
                
-               videos.push(${env.BUILD_ID})
+               videos.push("${env.BUILD_NUMBER}")
                videos.push("latest")
                
-               web.push(${env.BUILD_ID})
+               web.push("${env.BUILD_NUMBER}")
                web.push("latest")
                
                echo "trying to push to docker hub"
