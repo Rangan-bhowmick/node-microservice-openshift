@@ -1,6 +1,6 @@
 return [
     version:'',
     image_name1:'books-sample-code',
-    image_name2:'search-sample-code'
-    registry:'rangandocker',
+    image_name2:'search-sample-code',
+    registry:'rangandocker'
  ]
