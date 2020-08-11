@@ -1,6 +1,6 @@
 node() {
    checkout scm
-   def props = load 'properties'
+   def props = load 'node-microservice-openshift/properties'
    def workspace = WORKSPACE
    //def VERSION = {props.version}
    def cur_date = new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("UTC"))
@@ -11,16 +11,16 @@ node() {
    
    
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
-      echo env.WORKSPACE/books
+      //echo node-microservice-openshift/books
             stage('Build Docker Images'){
                // Creating and running the first one
-                  dir ('${env.WORKSPACE}/books') {
-                     //sh "docker build -t ${props.image_name1} ."
-                     //sh "docker tag ${props.image_name1} ${props.registry}/node-microservice:$tag_name1"
+                  dir ('node-microservice-openshift/books/') {
+                     sh "docker build -t ${props.image_name1} ."
+                     sh "docker tag ${props.image_name1} ${props.registry}/node-microservice:$tag_name1"
                   }
 
                // Creating and running the first one
-               dir ('${env.WORKSPACE}/search') {
+               dir ('${env.WORKSPACE}/search/') {
                      //sh "docker build -t ${props.image_name2} ."
                      //sh "docker tag ${props.image_name2} ${props.registry}/node-microservice:$tag_name2"
                }
