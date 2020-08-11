@@ -1,5 +1,9 @@
 node() {
    checkout scm
+   def books
+   def search
+   def videos
+   def web
    def props = load 'properties'
    def workspace = WORKSPACE
    //def VERSION = {props.version}
@@ -13,10 +17,10 @@ node() {
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
       //echo node-microservice-openshift/books
             stage('Build Docker Images'){
-               def books = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/books/Dockerfile .")
-               def search = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/search/Dockerfile .") 
-               def videos = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/videos/Dockerfile .") 
-               def web = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/web/Dockerfile .") 
+                books = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/books/Dockerfile .")
+                search = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/search/Dockerfile .") 
+                videos = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/videos/Dockerfile .") 
+                web = docker.build("rangandocker/node-microservice:${env.BUILD_ID}","-f ${env.WORKSPACE}/web/Dockerfile .") 
               
             } 
             stage('Push Docker Images'){
