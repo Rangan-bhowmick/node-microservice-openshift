@@ -11,24 +11,24 @@ node() {
    
    
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
-      
+      echo 'hello ${env.WORKSPACE}'
             stage('Build Docker Images'){
                // Creating and running the first one
                   dir ('${env.WORKSPACE}/books') {
-                     sh "docker build -t ${props.image_name1} ."
-                     sh "docker tag ${props.image_name1} ${props.registry}/node-microservice:$tag_name1"
+                     //sh "docker build -t ${props.image_name1} ."
+                     //sh "docker tag ${props.image_name1} ${props.registry}/node-microservice:$tag_name1"
                   }
 
                // Creating and running the first one
                dir ('${env.WORKSPACE}/search') {
-                     sh "docker build -t ${props.image_name2} ."
-                     sh "docker tag ${props.image_name2} ${props.registry}/node-microservice:$tag_name2"
+                     //sh "docker build -t ${props.image_name2} ."
+                     //sh "docker tag ${props.image_name2} ${props.registry}/node-microservice:$tag_name2"
                }
             } 
             stage('Push Docker Images'){
-                     sh "docker push ${props.registry}/node-microservice:$tag_name1"
-                     sh "docker push ${props.registry}/node-microservice:$tag_name2"
-                     sh "docker logout ${props.registry}"
+                    //sh "docker push ${props.registry}/node-microservice:$tag_name1"
+                     //sh "docker push ${props.registry}/node-microservice:$tag_name2"
+                    // sh "docker logout ${props.registry}"
             }   		    
    }
 }
