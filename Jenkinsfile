@@ -11,10 +11,8 @@ node() {
    docker.withRegistry("https://registry.hub.docker.com", "docker-hub"){
       
             stage('docker-compose') {
-           steps {
               sh "docker-compose build"
               sh "docker-compose up -d"
-                  }
             }
             stage('Push Docker Images'){
                      sh "docker push ${props.registry}/node-microservice-openshift:$tag_name"
