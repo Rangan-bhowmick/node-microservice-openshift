@@ -11,7 +11,7 @@ node() {
    
    
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
-      echo ${env.WORKSPACE}
+      echo env.WORKSPACE
             stage('Build Docker Images'){
                // Creating and running the first one
                   dir ('${env.WORKSPACE}/books') {
