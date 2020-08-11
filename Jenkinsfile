@@ -11,7 +11,7 @@ node() {
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
       
             stage('docker-compose') {
-              sh "docker-compose build"
+              //sh "docker-compose build"
               sh "docker-compose up -d"
             }
             stage('Push Docker Images'){
