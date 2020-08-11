@@ -12,13 +12,13 @@ node() {
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
       
             stage('Build Docker Images'){
-               # Creating and running the first one
+               // Creating and running the first one
                   dir ('/books') {
                      sh "docker build -t ${props.image_name1} ."
                      sh "docker tag ${props.image_name1} ${props.registry}/node-microservice:$tag_name1"
                   }
 
-               # Creating and running the first one
+               // Creating and running the first one
                dir ('/search') {
                      sh "docker build -t ${props.image_name2} ."
                      sh "docker tag ${props.image_name2} ${props.registry}/node-microservice:$tag_name2"
