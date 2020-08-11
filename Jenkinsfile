@@ -8,7 +8,7 @@ node() {
    def tag_name = "$cur_date-${props.image_name}".toString()
    
    
-   docker.withRegistry("https://registry.hub.docker.com", "docker-hub"){
+   docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
       
             stage('docker-compose') {
               sh "docker-compose build"
