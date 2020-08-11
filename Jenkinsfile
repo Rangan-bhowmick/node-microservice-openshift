@@ -12,7 +12,7 @@ node() {
       
             stage('docker-compose') {
               //sh "docker-compose build"
-              sh "docker-compose up -d"
+              sh "docker-compose up --build"
             }
             stage('Push Docker Images'){
                      sh "docker push ${props.registry}/node-microservice-openshift:$tag_name"
