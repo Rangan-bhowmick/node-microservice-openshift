@@ -2,7 +2,7 @@ return [
     version:'',
     image_name1:'books-image',
     image_name2:'search-image',
-    image_name4:'videos-image',
-    image_name2:'web-image',
+    image_name3:'videos-image',
+    image_name4:'web-image',
     registry:'rangandocker'
  ]

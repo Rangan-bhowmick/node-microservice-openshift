@@ -1,11 +1,13 @@
 FROM node:latest
 
-COPY . /src
+WORKDIR /work/
 
-WORKDIR /src
+COPY ./package.json /work/package.json
 
 RUN npm install --production
 
+copy ./src/ /work/
+
 EXPOSE 3000
 
-CMD npm start
+CMD node .
