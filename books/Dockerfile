@@ -1,13 +1,11 @@
 FROM node:latest
 
-WORKDIR /work/
+COPY . /src
 
-COPY package*.json /work/package.json
+WORKDIR /src
 
 RUN npm install --production
 
-copy ./src/ /work/
-
-EXPOSE 3003
+EXPOSE 3000
 
 CMD [ "node", "server.js" ]
