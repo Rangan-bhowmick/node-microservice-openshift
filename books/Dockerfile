@@ -1,8 +1,8 @@
 FROM node:latest
 
-COPY . /src
-
 WORKDIR /src
+
+COPY ./books /src
 
 RUN npm install --production
 
