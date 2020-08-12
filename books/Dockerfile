@@ -1,12 +1,10 @@
 FROM node:latest
 
-WORKDIR /work/
+WORKDIR /src
 
-COPY ./books/package.json /work/package.json
+COPY ./books /src
 
 RUN npm install
-
-Copy ./books/ /work/
 
 EXPOSE 3000
 
