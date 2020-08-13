@@ -2,9 +2,9 @@ FROM node:latest
 
 WORKDIR /src
 
-COPY . /src
+COPY ./books /src
 
-RUN npm install --production
+RUN npm install
 
 EXPOSE 3002
 

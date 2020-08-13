@@ -41,8 +41,8 @@ app.get("/api/v1/search", async (req, res) => {
 app.get("/api/v1/search/depends-on", async (req, res) => {
   try {
     // we don't want to await we want both request to run at the same time
-    const videoPromise = fetch("http://videos:3000/");
-    const bookPromise = fetch("http://books:3000/");
+    const videoPromise = fetch("http://videos:3002/");
+    const bookPromise = fetch("http://books:3002/");
     const promises = [videoPromise, bookPromise];
     const [videoResponse, bookResponse] = await Promise.all(promises);
     const videoJson = await videoResponse.json();
