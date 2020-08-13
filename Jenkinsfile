@@ -10,7 +10,7 @@ node() {
    //sh "git rev-parse --short HEAD > commit-id"
    //def commit_id = readFile('commit-id').trim()
    def tag_book = "${props.image_name1}-$cur_date".toString()
-   def tag_search = "${props.image_name2}-$cur_date-".toString()
+   def tag_search = "${props.image_name2}-$cur_date".toString()
    def tag_videos = "${props.image_name3}-$cur_date".toString()
    def tag_web = "${props.image_name4}-$cur_date".toString()
    
