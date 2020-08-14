@@ -27,6 +27,7 @@ app.get("/api/v1/search", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+  
   res.json(videos.concat(books));
 });
 
@@ -47,8 +48,9 @@ app.get("/api/v1/search", async (req, res) => {
 app.get("/api/v1/search/depends-on", async (req, res) => {
   try {
     // we don't want to await we want both request to run at the same time
-    const videoPromise = fetch("http://videos-node-route-demoproject.apps.us-east-1.starter.openshift-online.com");
     const bookPromise = fetch("http://books-node-route-demoproject.apps.us-east-1.starter.openshift-online.com");
+    //const videoPromise = fetch("http://videos-node-route-demoproject.apps.us-east-1.starter.openshift-online.com");
+    const videoPromise = "";
     const promises = [videoPromise, bookPromise];
     const [videoResponse, bookResponse] = await Promise.all(promises);
     const videoJson = await videoResponse.json();
@@ -57,6 +59,7 @@ app.get("/api/v1/search/depends-on", async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); 
+
     res.json({ video: videoJson, book: bookJson });
   } catch (e) {
     res.status(500).json(e);
