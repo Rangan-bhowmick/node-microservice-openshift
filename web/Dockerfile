@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /src
 
-COPY ./books /src
+COPY ./web /src
 
 RUN npm install
 
