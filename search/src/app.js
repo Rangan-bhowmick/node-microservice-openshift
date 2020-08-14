@@ -7,10 +7,15 @@ const Video = require("./models/video_model");
 const Book = require("./models/books_model");
 const app = express();
 
-app.get("/", (req, res) => {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+  next();
+});
+
+
+app.get("/", (req, res) => {
   res.json({ msg: "search" });
 });
 
@@ -24,10 +29,6 @@ app.get("/api/v1/search", async (req, res) => {
   const promises = [videosPromise, booksPromise];
   const [videos, books] = await Promise.all(promises);
 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-  
   res.json(videos.concat(books));
 });
 
@@ -45,22 +46,17 @@ app.get("/api/v1/search", async (req, res) => {
   longer than 1, here it is ok because:
   "search -> books|videos -> <no more calls>"
 */
-app.get("/api/v1/search/depends-on", async (req, res) => {
+app.get("/api/v1/search/depends-on-otherService", async (req, res) => {
   try {
     // we don't want to await we want both request to run at the same time
     const bookPromise = fetch("http://books-node-route-demoproject.apps.us-east-1.starter.openshift-online.com");
     //const videoPromise = fetch("http://videos-node-route-demoproject.apps.us-east-1.starter.openshift-online.com");
-    const videoPromise = "";
-    const promises = [videoPromise, bookPromise];
-    const [videoResponse, bookResponse] = await Promise.all(promises);
-    const videoJson = await videoResponse.json();
+    const promises = [bookPromise];
+    const [bookResponse] = await Promise.all(promises);
+    //const videoJson = await videoResponse.json();
     const bookJson = await bookResponse.json();
 
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); 
-
-    res.json({ video: videoJson, book: bookJson });
+    res.json({ video: "service not available", book: bookJson });
   } catch (e) {
     res.status(500).json(e);
   }
