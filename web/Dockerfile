@@ -6,6 +6,6 @@ COPY ./books /src
 
 RUN npm install
 
-EXPOSE 3003
+EXPOSE 3000
 
 CMD [ "node", "server.js" ]
