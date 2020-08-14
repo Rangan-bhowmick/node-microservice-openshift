@@ -18,16 +18,16 @@ node() {
    docker.withRegistry("https://registry.hub.docker.com", "private_docker_hub"){
       
             stage('Build Docker Images'){
-                //books = docker.build("${props.registry}/node-microservice:$tag_book","-f ${env.WORKSPACE}/books/Dockerfile .")
-                //search = docker.build("${props.registry}/node-microservice:$tag_search","-f ${env.WORKSPACE}/search/Dockerfile .") 
-                //videos = docker.build("${props.registry}/node-microservice:$tag_videos","-f ${env.WORKSPACE}/videos/Dockerfile .") 
+                books = docker.build("${props.registry}/node-microservice:$tag_book","-f ${env.WORKSPACE}/books/Dockerfile .")
+                search = docker.build("${props.registry}/node-microservice:$tag_search","-f ${env.WORKSPACE}/search/Dockerfile .") 
+                videos = docker.build("${props.registry}/node-microservice:$tag_videos","-f ${env.WORKSPACE}/videos/Dockerfile .") 
                 web = docker.build("${props.registry}/node-microservice:$tag_web","-f ${env.WORKSPACE}/web/Dockerfile .") 
               
             } 
             stage('Push Docker Images'){
-               //books.push()
-               //search.push()
-               //videos.push()
+               books.push()
+               search.push()
+               videos.push()
                web.push()
                
                echo "Successfully pushed to Docker-hub !!!"
